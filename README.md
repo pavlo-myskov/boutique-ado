@@ -1,5 +1,5 @@
 # Boutique Ado
-B2C E-Commerce Django-based Web Application
+B2C E-Commerce Django-based Web Application. It is a fully functional online store with a shopping cart, checkout, and payment capabilities, as well as the admin interface to manage the store.
 
 Live Demo: https://boutique-ado-b2c.herokuapp.com/
 Repo: https://github.com/FlashDrag/boutique-ado
