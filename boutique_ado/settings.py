@@ -176,8 +176,7 @@ ACCOUNT_SESSION_REMEMBER = None
 # User gets blocked from logging back in until a timeout.
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 
-# email verification is mandatory to complete the signup process
-# prevents brute force attacks
+# email verification is optional,
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 # Logs the user in after confirming the email address.
