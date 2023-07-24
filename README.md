@@ -40,16 +40,9 @@ Repo: https://github.com/FlashDrag/boutique-ado
 -  As a Store Owner, I want to be able to delete a product, so that I can remove it from the store.
 
 
-
-## Features
-
-
 ## Technologies Used
 - [Python 3.11](https://www.python.org/)
 - [Django 3.2](https://docs.djangoproject.com/en/3.2/)
 - [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
 - [Bootstrap 4.4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
 - [jQuery 3.4](https://jquery.com/)
-
-
-## Project Setup
