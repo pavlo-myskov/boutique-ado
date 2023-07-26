@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Q
+from django.db.models.functions import Lower
 
 from .models import Category, Product
 
