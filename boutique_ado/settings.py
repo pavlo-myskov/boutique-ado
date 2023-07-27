@@ -85,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Custom context processor for bag contents
+                'bag.contexts.bag_contents',
             ],
         },
     },
@@ -206,3 +208,6 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 # called App Passwords, not the same as account password
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
+
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
