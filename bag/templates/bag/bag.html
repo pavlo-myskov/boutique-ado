@@ -49,7 +49,7 @@
               <p class="my-0">${{ item.product.price }}</p>
             </td>
             <td class="py-3 w-25">
-              <form class="form update-form" action="" method="post">
+              <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                   <div class="input-group">
@@ -154,5 +154,5 @@
              location.reload();
          });
     })
-</script>
+  </script>
 {% endblock %}
