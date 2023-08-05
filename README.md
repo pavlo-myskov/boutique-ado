@@ -78,7 +78,7 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - [x] Add product to bag
 - [x] Remove a product from the bag
 - [x] View bag
-- [x] View the number of each product in the bag
+- [x] View and adjust the number of each product in the bag
 - [x] View a subtotal cost of each product in the bag
 - [x] Delivery calculation
 - [x] Grand total
