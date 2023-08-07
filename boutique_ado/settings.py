@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'checkout',
 
     # other
-    'cripsy_forms',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +91,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # allows access the no image file in media folder
+                # if there is no image for a product
+                'django.template.context_processors.media',
                 # Custom context processor for bag contents
                 'bag.contexts.bag_contents',
             ],
