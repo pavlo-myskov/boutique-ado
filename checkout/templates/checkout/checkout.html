@@ -137,8 +137,11 @@
 </div>
 {% endblock %}
 
+<!-- Stripe.js -->
 {% block postloadjs %}
 {{ block.super }}
+<!-- Make the stripe public key and client secret available to stripe_elements.js, e.g:
+<script id="id_stripe_public_key" type="application/json">"pk_test_51NcWN..."</script> -->
 {{ stripe_public_key | json_script:"id_stripe_public_key" }}
 {{ client_secret | json_script:"id_client_secret" }}
 <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>

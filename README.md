@@ -92,3 +92,6 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
 - [Bootstrap 4.4](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
 - [jQuery 3.4](https://jquery.com/)
+
+## Payment (Stripe)
+https://www.youtube.com/watch?v=ncsCnC3Ynlw&t=11263s
