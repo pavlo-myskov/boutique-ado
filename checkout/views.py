@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.contrib import messages
@@ -40,7 +41,7 @@ def checkout(request):
         # create an instance of the order form
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            # save the order form if it is valid
+            # save the order form to the database
             order = order_form.save()
             # iterate through the bag items and create each line item
             for item_id, item_data in bag.items():
@@ -119,18 +120,36 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """Handle successful checkouts"""
-    save_info = request.session.get('save_info')
+    save_info = request.session.get("save_info")
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Order successfully processed! \
+    messages.success(
+        request,
+        f"Order successfully processed! \
                      Your order number is {order_number}. A confirmation \
-                        email will be sent to {order.email}.')
+                        email will be sent to {order.email}.",
+    )
 
-    if 'bag' in request.session:
-        del request.session['bag']
+    if "bag" in request.session:
+        del request.session["bag"]
 
-    template = 'checkout/checkout_success.html'
+    template = "checkout/checkout_success.html"
     context = {
-        'order': order,
+        "order": order,
     }
 
     return render(request, template, context)
+
+
+def cache_checkout_data(request):
+    """Cache the checkout data"""
+    try:
+        pass
+        return HttpResponse(status=200)
+    # catch any stripe exceptions
+    except Exception as e:
+        messages.error(
+            request,
+            "Sorry, your payment cannot be \
+            processed right now. Please try again later.",
+        )
+        return HttpResponse(content=e, status=400)
