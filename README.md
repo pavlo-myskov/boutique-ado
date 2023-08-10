@@ -94,4 +94,20 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - [jQuery 3.4](https://jquery.com/)
 
 ## Payment (Stripe)
+Python Django - Build a user, payment and order management system
 https://www.youtube.com/watch?v=ncsCnC3Ynlw&t=11263s
+
+#### Test card numbers for Stripe
+https://stripe.com/docs/testing?testing-method=card-numbers
+
+- ##### Successful payment
+`4242424242424242`
+
+- ##### Declined payments
+`4000000000000002` - card declined
+`4000000000009995` - insufficient funds
+`4000000000009987` - lost card
+`4000000000009979` - stolen card
+
+- ##### 3D Secure
+`4000002500003155` - 3D Secure authentication required
