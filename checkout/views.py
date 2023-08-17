@@ -1,6 +1,8 @@
+import json
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 from django.urls import reverse
 from django.contrib import messages
 import stripe
@@ -140,10 +142,19 @@ def checkout_success(request, order_number):
     return render(request, template, context)
 
 
+@require_POST
 def cache_checkout_data(request):
-    """Cache the checkout data"""
+    """Update the payment intent with the bag and save_info"""
     try:
-        pass
+        # payment intent id
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        # add the bag and save_info to the metadata field of the payment intent
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
         return HttpResponse(status=200)
     # catch any stripe exceptions
     except Exception as e:

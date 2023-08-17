@@ -64,7 +64,9 @@ form.addEventListener('submit', function (ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    // get boolean value of save info checkbox
+    // Capture form data that cannot be
+    // added to payment intent here in confirmCardPayment method,
+    // and send it to cache_checkout_data view as a post request instead
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -108,7 +110,9 @@ form.addEventListener('submit', function (ev) {
             },
         }).then(function (result) {
             if (result.error) {
-                // show error to customer
+                // if error, stop loading overlay and fade in payment form
+                // display error message in card element
+                // re-enable card element and submit button to allow customer to fix error
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
@@ -130,7 +134,8 @@ form.addEventListener('submit', function (ev) {
             }
         });
     }).fail(function () {
-        // just reload the page, the error will be in django messages
+        // if post fails due to view error
+        // just reload the page to display the error in django messages
         location.reload();
     })
 });
