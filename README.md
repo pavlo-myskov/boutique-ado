@@ -43,7 +43,7 @@ Repo: https://github.com/FlashDrag/boutique-ado
 ### Features
 #### User Authentication and Authorization
 - [x] User registration
-- [x] User login with email confirmation
+- [x] User login with email confirmation(temporary disabled)
 - [x] User logout
 
 #### User Profile

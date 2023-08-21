@@ -204,8 +204,8 @@ ACCOUNT_SESSION_REMEMBER = None
 # User gets blocked from logging back in until a timeout.
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 
-# email verification is optional,
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# email verification is not required
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Logs the user in after confirming the email address.
 # Works only when user signs up
