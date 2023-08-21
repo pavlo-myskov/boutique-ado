@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     delivery information and order history
     """
 
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(
         max_length=20, null=True, blank=True
     )
@@ -34,7 +34,7 @@ class UserProfile(models.Model):
     default_county = models.CharField(max_length=80, null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
 
 @receiver(post_save, sender=User)
