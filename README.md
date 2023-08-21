@@ -83,8 +83,9 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - [x] Delivery calculation
 - [x] Grand total
 
-#### Checkout
-...
+#### Checkout (Stripe)
+- [x] Checkout form
+- [x] Card payment
 
 ## Technologies Used
 - [Python 3.11](https://www.python.org/)
