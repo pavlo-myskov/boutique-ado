@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .forms import ProductFrom
+from .forms import ProductForm
 from .models import Category, Product
 
 
@@ -18,27 +18,27 @@ def all_products(request):
     direction = None
 
     if request.GET:
-        if 'sort' in request.GET:
+        if "sort" in request.GET:
             # get the sort key from the request.GET
-            sortkey = request.GET['sort']
+            sortkey = request.GET["sort"]
             sort = sortkey
             # annotate the products with the lower name if sorting by name
-            if sortkey == 'name':
-                sortkey = 'lower_name'
-                products = products.annotate(lower_name=Lower('name'))
-                if sortkey == 'category':
-                    sortkey = 'category__name'
-            if 'direction' in request.GET:
+            if sortkey == "name":
+                sortkey = "lower_name"
+                products = products.annotate(lower_name=Lower("name"))
+                if sortkey == "category":
+                    sortkey = "category__name"
+            if "direction" in request.GET:
                 # get the direction from the request.GET
-                direction = request.GET['direction']
-                if direction == 'desc':
+                direction = request.GET["direction"]
+                if direction == "desc":
                     # reverse the order of the sort key
-                    sortkey = f'-{sortkey}'
+                    sortkey = f"-{sortkey}"
             products = products.order_by(sortkey)
 
-        if 'category' in request.GET:
+        if "category" in request.GET:
             # get the category name from the request.GET
-            categories = request.GET['category'].split(',')
+            categories = request.GET["category"].split(",")
             # filter the products by the category name
             products = products.filter(category__name__in=categories)
             # get the category object from the database
@@ -59,7 +59,7 @@ def all_products(request):
             )
             products = products.filter(queries)
 
-    current_sorting = f'{sort}_{direction}'
+    current_sorting = f"{sort}_{direction}"
 
     context = {
         "products": products,
@@ -82,10 +82,23 @@ def product_detail(request, product_id):
 
 def add_product(request):
     """Add a product to the store"""
-    form = ProductFrom()
-    template = 'products/add_product.html'
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully added product!")
+            return redirect(reverse("add_product"))
+        else:
+            messages.error(
+                request,
+                "Failed to add product. Please ensure the form is valid.",
+            )
+    else:
+        form = ProductForm()
+
+    template = "products/add_product.html"
     context = {
-        'form': form,
+        "form": form,
     }
 
     return render(request, template, context)
