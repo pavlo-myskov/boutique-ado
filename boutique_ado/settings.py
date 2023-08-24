@@ -20,8 +20,8 @@ load_dotenv()  # take environment variables from .env.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-development = os.getenv('DEVELOPMENT', False) == 'True'
-if development:
+DEVELOPMENT = os.getenv('DEVELOPMENT', False) == 'True'
+if DEVELOPMENT:
     print('Development mode is ON.')
 else:
     print('Development mode is OFF.')
@@ -216,14 +216,19 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 # Email SMTP settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # for gmail
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# password must be generated from gmail account,
-# called App Passwords, not the same as account password
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
+if DEVELOPMENT:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'  # for gmail
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    # password must be generated from gmail account,
+    # called App Passwords, not the same as account password
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_USE_TLS = True
 
 # Stripe settings
 FREE_DELIVERY_THRESHOLD = 50
