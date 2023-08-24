@@ -1,5 +1,5 @@
 # Boutique Ado
-B2C E-Commerce Django-based Web Application. It is a fully functional online store with a shopping cart, checkout, and payment capabilities, as well as the admin interface to manage the store.
+B2C E-Commerce Django-based Web Application. It is a fully functional online store with a shopping cart, checkout, and payment capabilities, as well as an admin interface to manage the store.
 
 Live Demo: https://boutique-ado-b2c.herokuapp.com/
 
@@ -10,7 +10,7 @@ Repo: https://github.com/FlashDrag/boutique-ado
 #### Epic: Viewing and Navigation
 - As a Shopper, I want to be able to view a list of products so that I can select some to purchase
 - As a Shopper, I want to be able to view the details of a product so that I can identify the price, description, product rating, image and available sizes
-- As a Shopper, I want to be able quickly identify deals, clearance items and special offers so that I can take advantage of special savings on products I'd like to purchase
+- As a Shopper, I want to be able to quickly identify deals, clearance items and special offers so that I can take advantage of special savings on products I'd like to purchase
 - As a Shopper, I want to be able to easily view the total of my purchases at any time so that I can avoid spending too much
 #### Epic: Registration and User Accounts
 - As a Shopper, I want to be able to easily register for an account so that I can have a personal account and be able to view my profile
@@ -25,7 +25,7 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - As a Shopper, I want to be able to search for a product by name or description so that I can find a specific product I'd like to purchase
 - As a Shopper, I want to be able to easily see what I've searched for and the number of results so that I can quickly decide whether the product I want is available
 #### Epic: Purchasing and Checkout
-- As a Shopper, I want to be able easily select the size and quantity of a product when purchasing it, so that I can ensure I don't accidentally select the wrong product, size or quantity
+- As a Shopper, I want to be able to easily select the size and quantity of a product when purchasing it, so that I can ensure I don't accidentally select the wrong product, size or quantity
 - As a Shopper, I want to be able to view items in my bag to be purchased, so that I can identify the total cost of my purchase and all items I will receive
 - As a Shopper, I want to be able to adjust the quantity of individual items in my bag, so that I can easily make changes to my purchase before checkout
 - As a Shopper, I want to be able to easily enter my payment information so that I can check out quickly and with no hassles
@@ -40,14 +40,17 @@ Repo: https://github.com/FlashDrag/boutique-ado
 
 ## Features
 #### User Authentication and Authorization
-- [x] User registration
-- [x] User login with email confirmation(temporary disabled)
+- [x] User Registration
+- [x] User login with email confirmation(temporarily disabled)
 - [x] User logout
 
 #### User Profile
 - [x] Order history
 - [x] Order email confirmation
 - [x] Save delivery information
+
+#### Store Management
+- [x] Add product
 
 #### List of Products
 - [x] All products
