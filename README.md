@@ -51,6 +51,8 @@ Repo: https://github.com/FlashDrag/boutique-ado
 
 #### Store Management
 - [x] Add product
+- [x] Edit product
+- [x] Delete product
 
 #### List of Products
 - [x] All products
@@ -108,10 +110,10 @@ https://stripe.com/docs/testing?testing-method=card-numbers
 `4242424242424242`
 
 - ##### Declined payments
-`4000000000000002` - card declined
-`4000000000009995` - insufficient funds
-`4000000000009987` - lost card
-`4000000000009979` - stolen card
+- `4000000000000002` - card declined
+- `4000000000009995` - insufficient funds
+- `4000000000009987` - lost card
+- `4000000000009979` - stolen card
 
 - ##### 3D Secure
 `4000002500003155` - 3D Secure authentication required
