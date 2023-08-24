@@ -6,9 +6,7 @@ Live Demo: https://boutique-ado-b2c.herokuapp.com/
 Repo: https://github.com/FlashDrag/boutique-ado
 
 
-## Agile Development
-
-### User Stories
+## User Stories
 #### Epic: Viewing and Navigation
 - As a Shopper, I want to be able to view a list of products so that I can select some to purchase
 - As a Shopper, I want to be able to view the details of a product so that I can identify the price, description, product rating, image and available sizes
@@ -40,14 +38,16 @@ Repo: https://github.com/FlashDrag/boutique-ado
 -  As a Store Owner, I want to be able to delete a product, so that I can remove it from the store.
 
 
-### Features
+## Features
 #### User Authentication and Authorization
 - [x] User registration
 - [x] User login with email confirmation(temporary disabled)
 - [x] User logout
 
 #### User Profile
-...
+- [x] Order history
+- [x] Order email confirmation
+- [x] Save delivery information
 
 #### List of Products
 - [x] All products
@@ -84,7 +84,7 @@ Repo: https://github.com/FlashDrag/boutique-ado
 - [x] Grand total
 
 #### Checkout (Stripe)
-- [x] Checkout form
+- [x] Checkout form with delivery information
 - [x] Card payment
 
 ## Technologies Used
