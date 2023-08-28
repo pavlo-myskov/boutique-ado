@@ -35,7 +35,11 @@ else:
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'boutique-ado-b2c.herokuapp.com']
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "boutique-ecommerce-c39a21be7709.herokuapp.com",
+]
 
 # Clickjacking protection. Means that you can
 # only embed your site in an iframe on your own domain.
