@@ -9,9 +9,11 @@ Django==3.2.20
 django-allauth==0.54.0
 django-countries==7.2.1
 django-crispy-forms==1.14.0
+gunicorn==21.2.0
 idna==3.4
 livereload==2.6.3
 oauthlib==3.2.2
+packaging==23.1
 Pillow==10.0.0
 psycopg2==2.9.7
 pycodestyle==2.10.0
