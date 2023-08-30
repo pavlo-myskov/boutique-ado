@@ -118,7 +118,8 @@ https://stripe.com/docs/testing?testing-method=card-numbers
 - ##### 3D Secure
 `4000002500003155` - 3D Secure authentication required
 
-## Static Files (AWS S3)
+## Static Files
+### AWS S3 Setup
 - Create a new bucket in AWS S3:
     - Bucket name: boutique-ado
     - Region: Choose the region closest to you
@@ -212,3 +213,16 @@ https://stripe.com/docs/testing?testing-method=card-numbers
             - Select 'Application running outside AWS', and click next
             - On the next screen, you can leave the 'Description tag value' blank. Click 'Create Access Key'
             - Click the 'Download .csv file' button or copy the 'Access Key ID' and 'Secret Access Key' values into a secure location.
+### Connecting Django to S3
+- Install boto3 and django-storages using pip:
+    ```
+    pip install boto3 django-storages
+    ```
+- Freeze the requirements
+- Add 'storages' to INSTALLED_APPS in settings.py
+- Add AWS S3 settings to the settings.py file (see settings.py)
+- Create a file called custom_storages.py in the root directory of the project
+- Add credentials to Heroku Config Vars:
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_STORAGE_BUCKET_NAME

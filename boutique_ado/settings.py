@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 
     # other
     'crispy_forms',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -177,11 +178,41 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+if not DEVELOPMENT:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    # URL path for your static files where they will be served from
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
+    # s3 media settings
+    MEDIA_LOCATION = 'media'
+    # URL path for media files where they will be served from
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+else:
+    # URL path for your static files where they
+    # will be served from during development
+    STATIC_URL = '/static/'
+    # Dir where static files will be collected using
+    # python manage.py collectstatic
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # URL path for media files where they will be served from
+    MEDIA_URL = '/media/'
+    # Dir where media files are stored during development
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
