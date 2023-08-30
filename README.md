@@ -117,3 +117,98 @@ https://stripe.com/docs/testing?testing-method=card-numbers
 
 - ##### 3D Secure
 `4000002500003155` - 3D Secure authentication required
+
+## Static Files (AWS S3)
+- Create a new bucket in AWS S3:
+    - Bucket name: boutique-ado
+    - Region: Choose the region closest to you
+    - Object ownership:
+        - ACLs enabled
+        - Bucket owner preferred
+    - Uncheck Block all public access
+    - Check 'I acknowledge ... becoming public'.
+    - Create bucket
+- Bucket settings:
+    - Properties:
+        - Static website hosting:
+            - Enable
+            - Index document: index.html
+            - Error document: error.html
+    - Permissions:
+        - CORS configuration (Paste the following code):
+            ```
+            [
+                {
+                    "AllowedHeaders": [
+                        "Authorization"
+                    ],
+                    "AllowedMethods": [
+                        "GET"
+                    ],
+                    "AllowedOrigins": [
+                        "*"
+                    ],
+                    "ExposeHeaders": []
+                }
+            ]
+            ```
+        - Bucket policy:
+            - Policy generator:
+                - Select type of policy: S3 Bucket Policy
+                - Principal: *
+                - Actions: GetObject
+                - Amazon Resource Name (ARN):
+                    **Bucket ARN** - Get from the Bucket policy editor ```arn:aws:s3:::boutique-ecommerce```
+                - Add statement
+                - Generate policy
+                - Copy the policy
+                - Paste the policy in the Bucket policy editor
+                - **Add /* to the end of the Resource key in the statement**
+                - Save changes
+        - Access control list:
+            - Everyone:
+                - Check *List*
+
+- IAM:
+    - Groups
+        - Create a new group without any policies attached to it yet.
+        - Create a policy:
+            - Service: S3
+            - Select JSON
+            - Select *Import policy* from *Actions*
+            - Find *AmazonS3FullAccess* typing *S3* in the search bar
+            - Import
+
+            - Go to S3 bucket settings (don't close the policy editor of the IAM group)
+            - Copy the *Bucket ARN* from the Bucket policy editor
+            - Paste the *Bucket ARN* in the *Resource* key of the policy:
+                ```
+                "Resource": [
+                    "arn:aws:s3:::boutique-ecommerce",
+                    "arn:aws:s3:::boutique-ecommerce/*"
+                ]
+                ```
+            - Review policy
+            - Give the policy a name: *boutique-ecommerce-policy*
+            - Add description: *Access to boutique-ecommerce S3 bucket for static files*
+        - Attach the policy to the group:
+            - Go to the group > Permissions
+            - Attach policy
+            - Search for the policy name: *boutique-ecommerce-policy*
+            - Attach policy
+    - Users
+        - Create a new user:
+            - User name: *boutique-ecommerce-staticfiles-user*
+            - Access type: *Programmatic access*
+            - Next: *Permissions*
+            - Add user to group:
+                - Select the group: *boutique-ecommerce-group*
+            - Create user
+        - Retrieve credentials:
+            - Go to IAM and select 'Users'
+            - Select the user for whom you wish to create a CSV file.
+            - Select the 'Security Credentials' tab
+            - Scroll to 'Access Keys' and click 'Create access key'
+            - Select 'Application running outside AWS', and click next
+            - On the next screen, you can leave the 'Description tag value' blank. Click 'Create Access Key'
+            - Click the 'Download .csv file' button or copy the 'Access Key ID' and 'Secret Access Key' values into a secure location.
