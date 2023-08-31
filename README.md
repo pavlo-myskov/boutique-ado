@@ -103,6 +103,16 @@ Repo: https://github.com/FlashDrag/boutique-ado
 Python Django - Build a user, payment and order management system
 https://www.youtube.com/watch?v=ncsCnC3Ynlw&t=11263s
 
+#### Webhooks configuration
+- Go to Stripe Developer Dashboard > Webhooks
+- Add endpoint:
+    - Endpoint URL: https://boutique-ecommerce-c39a21be7709.herokuapp.com/checkout/wh
+    - Select all events
+    - Add endpoint
+- Copy the Signing secret
+- Add the Signing secret to Heroku Config Vars
+    - STRIPE_WH_SECRET
+
 #### Test card numbers for Stripe
 https://stripe.com/docs/testing?testing-method=card-numbers
 
