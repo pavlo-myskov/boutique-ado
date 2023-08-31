@@ -1,7 +1,7 @@
 # Boutique Ado
 B2C E-Commerce Django-based Web Application. It is a fully functional online store with a shopping cart, checkout, and payment capabilities, as well as an admin interface to manage the store.
 
-Live Demo: https://boutique-ado-b2c.herokuapp.com/
+Live Demo: https://boutique-ecommerce-c39a21be7709.herokuapp.com/
 
 Repo: https://github.com/FlashDrag/boutique-ado
 
@@ -226,3 +226,12 @@ https://stripe.com/docs/testing?testing-method=card-numbers
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
     - AWS_STORAGE_BUCKET_NAME
+### Uploading static and media files to S3
+- Delete DISABLE_COLLECTSTATIC from Heroku Config Vars and deploy the app
+
+*It automatically uploads all static files to S3 using ```python3 manage.py collectstatic```*
+
+- Create a folder called media in the S3 bucket
+- Manually upload all media files to the media folder in the S3 bucket
+- Set *Grand public-read access* in the Access control list(ACL) of the media folder
+- Upload
