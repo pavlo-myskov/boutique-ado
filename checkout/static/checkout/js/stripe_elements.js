@@ -75,7 +75,7 @@ form.addEventListener('submit', function (ev) {
         'client_secret': clientSecret,
         'save_info': saveInfo,
     };
-    var url = '/checkout/cache_checkout_data/';
+    var url = '/checkout/cache_checkout_data';
 
     // post data to cache_checkout_data view
     $.post(url, postData).done(function () {
@@ -133,9 +133,10 @@ form.addEventListener('submit', function (ev) {
                 }
             }
         });
-    }).fail(function () {
+    }).fail(function (xhr, textStatus, error) {
         // if post fails due to view error
         // just reload the page to display the error in django messages
+        console.error('Failed to cache checkout data. Please try again.');
         location.reload();
     })
 });
