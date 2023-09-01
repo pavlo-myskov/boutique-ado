@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -69,6 +70,13 @@ class StripeWH_Handler:
         if user != "AnonymousUser":
             profile = UserProfile.objects.get(user__email=user)
             if save_info:
+                # Save the user's name to the User model
+                User = get_user_model()
+                current_user = User.objects.get(email=user)
+                current_user.name = shipping_details.name
+                current_user.save()
+
+                # Save the user's info to the UserProfile model
                 profile.default_phone_number = shipping_details.phone
                 profile.default_country = shipping_details.address.country
                 profile.default_postcode = shipping_details.address.postal_code
