@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import (
+    custom_bad_request_view,
+    custom_permission_denied_view,
+    custom_page_not_found_view,
+    custom_server_error_view,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +33,9 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler400 = custom_bad_request_view
+handler403 = custom_permission_denied_view
+handler404 = custom_page_not_found_view
+handler500 = custom_server_error_view
