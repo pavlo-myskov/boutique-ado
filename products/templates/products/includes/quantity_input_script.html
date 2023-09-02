@@ -5,8 +5,8 @@
     const currentValue = parseInt($(`#id_qty_${itemId}`).val());
     const minusDisabled = currentValue < 2;
     const plusDisabled = currentValue > 98;
-    $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
-    $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    $(`.decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+    $(`.increment-qty_${itemId}`).prop('disabled', plusDisabled);
 }
 
   // Ensure proper enabling/disabling of all inputs on page load
